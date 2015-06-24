@@ -147,7 +147,6 @@ class ProjetController extends Controller
             'method' => 'post',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -172,7 +171,7 @@ class ProjetController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('projet_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('projet_show', array('id' => $id)));
         }
 
         return $this->render('ProjetBundle:Projet:edit.html.twig', array(
@@ -226,7 +225,8 @@ class ProjetController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('projet_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => '<span class="btn btn-danger"  <i class="glyphicon glyphicon-remove"></i> Supprimer
+                        </span>'))
             ->getForm()
         ;
     }

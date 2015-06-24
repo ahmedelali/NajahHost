@@ -27,6 +27,7 @@ class TacheController extends Controller
         $entities = $em->getRepository('ProjetBundle:Tache')->findByProjet($id_projet);
         return $this->render('ProjetBundle:Tache:index.html.twig', array(
             'entities' => $entities,
+            'id_projet' => $id_projet,
         ));
     }
     /**
@@ -242,13 +243,13 @@ class TacheController extends Controller
     public function supprimerAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ProjetBundle:tache')->find($id);
-        $id_projet=$entity->getProjet()->getTitre();
+        $entity = $em->getRepository('ProjetBundle:Tache')->find($id);
+        $id_projet=$entity->getProjet()->getId();
         $em->remove($entity);
         $em->flush();
-        return $this->redirect($this->generateUrl('tache'), array(
+        return $this->redirect($this->generateUrl('tache', array(
             'id_projet'      => $id_projet,
-        ));
+        )));
     }
     /**
      * Creates a form to delete a Tache entity by id.

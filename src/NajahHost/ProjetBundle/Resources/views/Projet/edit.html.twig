@@ -17,8 +17,8 @@
                                 {{ form_errors(edit_form) }}
                             </div>
                         {% endif %}
-                        <form action="{{ path('projet_update', { 'id': entity.id }) }}" {{ form_enctype(edit_form) }} method="POST">
-                            <div class="form-group">
+                        {{ form_start(edit_form) }}
+                           <div class="form-group">
                                 <label for="">Titre</label>
                                 {{ form_widget(edit_form.titre, {'attr': {'class':'form-control','placeholder':'titre du projet'}}) }}
                             </div>
@@ -50,7 +50,7 @@
                             <div class="text-right col-lg-6">
                                 <button type="submit" class="btn btn-success" >Confirmer</button>
                             </div>
-                        </form>
+                        {{ form_end(edit_form) }}
                     </div>
                 </div>
             </div>

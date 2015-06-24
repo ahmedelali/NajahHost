@@ -3,14 +3,18 @@
 {% block body -%}
     <div class="container col-lg-10 col-lg-push-1">
         <div class="container col-lg-10">
-            <a class="btn btn-default" style="margin-bottom: 30px" href="{{ path('tache_new', { 'id_projet': entities[0].projet.id }) }}">
+            <a class="btn btn-default" style="margin-bottom: 30px" href="{{ path('tache_new', { 'id_projet': id_projet }) }}">
                 <i class="glyphicon glyphicon-plus" ></i> Créer une nouvelle tache
             </a>
         </div>
         <div class="col-lg-12 ">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Liste des taches inclus sous le projet {{ entities[0].projet.titre }}</h3>
+                    {% if entities %}
+                        <h3 class="panel-title">Liste des taches inclus sous le projet {{ entities[0].projet.titre }}</h3>
+                    {% else %}
+                        <h3 class="panel-title">Liste des taches</h3>
+                    {% endif %}
                 </div>
                 <div class="input-group col-lg-11">
                     <input style="margin-left: 20px" id="filter" type="text" class="form-control" placeholder="Recherche rapide"/>
@@ -50,7 +54,7 @@
                                             <li><a href="{{ path('tache_edit_affecter', { 'id': entity.id }) }}">Affecter membre(s)</a></li>
                                         </ul>
                                     </div>
-                                    <a class="btn btn-danger"  href="{{ path('projet_supprimer', { 'id': entity.id }) }}">
+                                    <a class="btn btn-danger"  href="{{ path('tache_supprimer', { 'id': entity.id }) }}">
                                         <i class="glyphicon glyphicon-remove"></i> Supprimer
                                     </a>
                                 </td>

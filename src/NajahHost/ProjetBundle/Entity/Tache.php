@@ -54,6 +54,7 @@ class Tache
 
     /**
      * @ORM\ManyToOne(targetEntity="\najahhost\ProjetBundle\Entity\Projet")
+     * @ORM\JoinColumn(name="projet_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $projet;
 

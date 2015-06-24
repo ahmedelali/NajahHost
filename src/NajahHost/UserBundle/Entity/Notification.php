@@ -23,6 +23,7 @@ class Notification
 
     /**
      * @ORM\OneToOne(targetEntity="\najahhost\ProjetBundle\Entity\Tache")
+     * @ORM\JoinColumn(name="tache_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $tache;
 
